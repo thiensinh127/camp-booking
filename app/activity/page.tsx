@@ -54,7 +54,7 @@ export default function Activity() {
   });
 
   return (
-    <section className="py-16 md:py-24 bg-[#F7F2DB]">
+    <section className=" bg-[#F7F2DB]">
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           {/* Left Column - Illustration and Heading */}

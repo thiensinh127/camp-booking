@@ -1,12 +1,22 @@
 /* eslint-disable react/no-unescaped-entities */
 "use client";
 
-import { Play, ChevronLeft, ChevronRight } from "lucide-react";
-import React from "react";
+import { Play, ChevronLeft, ChevronRight, X } from "lucide-react";
+import React, { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import { useInView } from "react-intersection-observer";
 
 const NavigationContent = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleWatchVideo = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   const [contentRef, contentInView] = useInView({
     triggerOnce: true,
     threshold: 0.2,
@@ -21,6 +31,18 @@ const NavigationContent = () => {
     triggerOnce: true,
     threshold: 0.1,
   });
+
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.style.overflow = "hidden"; // Disable scroll
+    } else {
+      document.body.style.overflow = ""; // Enable scroll
+    }
+
+    return () => {
+      document.body.style.overflow = ""; // Clean up on unmount
+    };
+  }, [isModalOpen]);
 
   return (
     <div className="relative h-full flex items-center">
@@ -42,8 +64,9 @@ const NavigationContent = () => {
           </h1>
           <Button
             variant="outline"
-            className="bg-white/10 text-white border-white hover:bg-white/20"
+            className="bg-white/10 text-white border-white hover:bg-white/20 hover:text-white"
             size="lg"
+            onClick={handleWatchVideo}
           >
             <Play className="mr-2 h-4 w-4" /> Watch This Video
           </Button>
@@ -74,6 +97,29 @@ const NavigationContent = () => {
       >
         <ChevronRight className="h-6 w-6" />
       </button>
+
+      {/* Video Modal */}
+      {isModalOpen && (
+        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50">
+          <div className="relative bg-black rounded-lg p-6 max-w-4xl w-full">
+            <button
+              className="absolute top-4 right-4 text-white hover:text-gray-400"
+              onClick={closeModal}
+            >
+              <X size={24} />
+            </button>
+            <div className="aspect-w-16 aspect-h-9">
+              <iframe
+                src="https://www.youtube.com/embed/your-video-id"
+                title="YouTube video"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="w-full h-full rounded-lg"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
