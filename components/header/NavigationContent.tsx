@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 "use client";
 
 import { Play, ChevronLeft, ChevronRight, X } from "lucide-react";
