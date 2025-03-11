@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 import Logo from "@/public/assets/logo.png";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { LoginModal } from "../login/LoginModal";
 
 export function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -75,9 +76,7 @@ export function Navigation() {
                 {link.label}
               </Link>
             ))}
-            <Button variant="outline" className=" text-black hover:bg-gray-100">
-              BOOK
-            </Button>
+            <LoginModal />
           </div>
 
           {/* Mobile Menu Button */}
