@@ -63,7 +63,7 @@ export default function About() {
     threshold: 0.1,
   });
   return (
-    <section className="py-16 md:py-24 bg-[#F7F2DB]">
+    <section className="py-16 md:py-24 bg-[#F7F2DB]" id="about">
       <div ref={ref} className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">

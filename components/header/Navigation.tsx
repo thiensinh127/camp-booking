@@ -1,22 +1,31 @@
 "use client";
 
-import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
-import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import Logo from "@/public/assets/logo.png";
+import { Menu, X } from "lucide-react";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 import { LoginModal } from "../login/LoginModal";
 
 export function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const pathname = usePathname(); // Get the current pathname
+  const [activeLink, setActiveLink] = useState("#home");
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleScroll = (event: React.MouseEvent, href: string) => {
+    event.preventDefault();
+    setActiveLink(href);
+    const targetElement = document.getElementById(href.substring(1));
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: "smooth" });
+    }
+    setIsMenuOpen(false);
   };
 
   // Add scroll listener to add shadow effect
@@ -31,10 +40,10 @@ export function Navigation() {
   }, []);
 
   const links = [
-    { href: "/", label: "Home" },
-    { href: "/about", label: "About" },
-    { href: "/campground", label: "Campground" },
-    { href: "/contact", label: "Contact" },
+    { href: "#home", label: "Home" },
+    { href: "#about", label: "About" },
+    { href: "#activity", label: "Activity" },
+    { href: "#news", label: "News" },
   ];
 
   return (
@@ -63,18 +72,17 @@ export function Navigation() {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
             {links.map((link) => (
-              <Link
+              <a
                 key={link.href}
                 href={link.href}
+                onClick={(e) => handleScroll(e, link.href)}
                 className={cn(
-                  "text-white hover:text-gray-200",
-                  pathname === link.href
-                    ? " bg-white text-black  px-8 py-2 rounded"
-                    : ""
+                  "text-white cursor-pointer hover:text-gray-200 px-4 py-2 transition",
+                  activeLink === link.href ? "bg-white text-black rounded" : ""
                 )}
               >
                 {link.label}
-              </Link>
+              </a>
             ))}
             <LoginModal />
           </div>
@@ -97,17 +105,14 @@ export function Navigation() {
           )}
         >
           {links.map((link) => (
-            <Link
+            <a
               key={link.href}
               href={link.href}
-              className={cn(
-                "text-white text-2xl hover:text-gray-200",
-                pathname === link.href ? "font-bold underline" : ""
-              )}
-              onClick={() => setIsMenuOpen(false)}
+              onClick={(e) => handleScroll(e, link.href)}
+              className="text-white text-2xl cursor-pointer hover:text-gray-200"
             >
               {link.label}
-            </Link>
+            </a>
           ))}
           <Button
             variant="outline"

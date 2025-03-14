@@ -21,16 +21,6 @@ const NavigationContent = () => {
     threshold: 0.2,
   });
 
-  const [leftArrowRef, leftArrowInView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
-
-  const [rightArrowRef, rightArrowInView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
-
   useEffect(() => {
     if (isModalOpen) {
       document.body.style.overflow = "hidden"; // Disable scroll
@@ -44,8 +34,7 @@ const NavigationContent = () => {
   }, [isModalOpen]);
 
   return (
-    <div className="relative h-full flex items-center">
-      {/* Main Content */}
+    <div className="relative h-full flex items-center" id="home">
       <div
         ref={contentRef}
         className={`container mx-auto w-3/4 transition-all duration-700 ease-in-out ${
@@ -74,24 +63,15 @@ const NavigationContent = () => {
 
       {/* Navigation Arrows */}
       <button
-        ref={leftArrowRef}
-        className={`absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-all duration-700 ease-in-out ${
-          leftArrowInView
-            ? "opacity-100 translate-x-0"
-            : "opacity-0 -translate-x-5"
-        }`}
+        className={`absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-all duration-700 ease-in-out `}
         aria-label="Previous slide"
       >
         <ChevronLeft className="h-6 w-6" />
       </button>
 
       <button
-        ref={rightArrowRef}
-        className={`absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-all duration-700 ease-in-out ${
-          rightArrowInView
-            ? "opacity-100 translate-x-0"
-            : "opacity-0 translate-x-5"
-        }`}
+        className={`absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-all duration-700 ease-in-out 
+         `}
         aria-label="Next slide"
       >
         <ChevronRight className="h-6 w-6" />

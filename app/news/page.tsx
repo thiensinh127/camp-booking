@@ -29,7 +29,7 @@ const articles = [
 
 export default function News() {
   return (
-    <section className=" bg-[#F7F2DB] pb-16 md:pb-24">
+    <section className=" bg-[#F7F2DB] pb-16 md:pb-24" id="news">
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-12">
