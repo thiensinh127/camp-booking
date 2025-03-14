@@ -20,7 +20,7 @@ export default function Footer() {
   });
 
   return (
-    <footer className="bg-green-800 text-white py-8">
+    <footer className="bg-green-800 text-white py-8 overflow-hidden">
       <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
         {/* Newsletter Section */}
         <div
