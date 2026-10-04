@@ -3,8 +3,7 @@
 @tailwind utilities;
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
-
+  font-family: var(--font-inter), Arial, sans-serif;
 }
 
 html body[data-scroll-locked] {
@@ -14,31 +13,43 @@ html body[data-scroll-locked] {
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
+    --forest: #1F5D42;
+    --forest-hover: #174A34;
+    --sage: #7A9B76;
+    --warm-ivory: #F7F5EE;
+    --surface: #FFFFFF;
+    --surface-muted: #EEF1E9;
+    --text-primary: #17201B;
+    --text-secondary: #5F6862;
+    --text-muted: #858D87;
+    --line: #E2E6E1;
+    --warm-accent: #D99A5B;
+    --dark-forest: #12251C;
+    --background: 48 22% 95%;
+    --foreground: 140 14% 11%;
     --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
+    --card-foreground: 140 14% 11%;
     --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 240 5.9% 10%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
+    --popover-foreground: 140 14% 11%;
+    --primary: 150 50% 24%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 90 16% 94%;
+    --secondary-foreground: 140 14% 11%;
+    --muted: 90 16% 94%;
+    --muted-foreground: 140 7% 39%;
+    --accent: 105 16% 54%;
+    --accent-foreground: 140 14% 11%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 240 10% 3.9%;
+    --border: 105 11% 89%;
+    --input: 105 11% 89%;
+    --ring: 150 50% 24%;
     --chart-1: 12 76% 61%;
     --chart-2: 173 58% 39%;
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
-    --radius: 0.5rem;
+    --radius: 0.75rem;
   }
 
   .dark {
@@ -76,5 +87,42 @@ html body[data-scroll-locked] {
 
   body {
     @apply bg-background text-foreground;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-manrope), Arial, sans-serif;
+  }
+
+  :focus-visible {
+    outline: 3px solid color-mix(in srgb, var(--forest) 65%, white);
+    outline-offset: 3px;
+  }
+}
+
+@layer components {
+  .page-shell {
+    @apply mx-auto w-full max-w-[1280px] px-4 md:px-6 xl:px-8;
+  }
+
+  .section-space {
+    @apply py-14 md:py-20 xl:py-24;
+  }
+
+  .eyebrow {
+    @apply text-xs font-bold uppercase tracking-[0.16em] text-[var(--forest)];
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
   }
 }

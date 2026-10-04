@@ -8,8 +8,14 @@ export default {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-  	extend: {
+   	extend: {
   		colors: {
+			forest: '#1F5D42',
+			'sage': '#7A9B76',
+			ivory: '#F7F5EE',
+			'surface-muted': '#EEF1E9',
+			ink: '#17201B',
+			'dark-forest': '#12251C',
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {
@@ -55,7 +61,11 @@ export default {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
-  		}
+		},
+		fontFamily: {
+			heading: ['var(--font-manrope)', 'Arial', 'sans-serif'],
+			body: ['var(--font-inter)', 'Arial', 'sans-serif'],
+		}
   	}
   },
   plugins: [require("tailwindcss-animate")],
