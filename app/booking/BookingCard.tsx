@@ -1,65 +1,10 @@
 import { Button } from "@/components/ui/button";
-import { Users } from "lucide-react";
+import { FeatureMeta } from "@/components/site/FeatureMeta";
+import { BedDouble, Flame, Star, Users } from "lucide-react";
 import Image from "next/image";
 
-import { useInView } from "react-intersection-observer";
-interface Accommodation {
-  title: string;
-  image: string;
-  capacity: string;
-  size: string;
-  description: string;
+type Accommodation = { title: string; image: string; capacity: string; bed: string; amenity: string; price: string; badge: string };
+
+export function AccommodationItem({ accommodation }: { accommodation: Accommodation }) {
+  return <article className="group overflow-hidden rounded-2xl border border-[var(--line)] bg-white transition duration-300 hover:-translate-y-1 hover:shadow-xl"><div className="relative aspect-[4/3] overflow-hidden"><Image src={accommodation.image} alt={accommodation.title} fill sizes="(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw" className="object-cover transition duration-500 group-hover:scale-105" /><span className="absolute left-4 top-4 rounded-full bg-white px-3 py-1 text-xs font-bold text-[var(--forest)]">{accommodation.badge}</span></div><div className="p-5"><div className="flex items-start justify-between gap-3"><div><h3 className="font-heading text-xl font-bold">{accommodation.title}</h3><p className="mt-1 flex items-center gap-1 text-sm font-semibold text-[var(--text-secondary)]"><Star className="size-4 fill-[var(--warm-accent)] text-[var(--warm-accent)]" /> 4.9 <span className="font-normal">(128)</span></p></div><p className="text-right text-sm text-[var(--text-secondary)]"><strong className="block font-heading text-lg text-[var(--text-primary)]">{accommodation.price}</strong>/ night</p></div><div className="mt-5 flex flex-wrap gap-x-4 gap-y-2"><FeatureMeta icon={Users}>{accommodation.capacity}</FeatureMeta><FeatureMeta icon={BedDouble}>{accommodation.bed}</FeatureMeta><FeatureMeta icon={Flame}>{accommodation.amenity}</FeatureMeta></div><Button className="mt-6 h-11 w-full rounded-xl bg-[var(--forest)] text-white hover:bg-[var(--forest-hover)]">View stay</Button></div></article>;
 }
-export const AccommodationItem = ({
-  accommodation,
-}: {
-  accommodation: Accommodation;
-}) => {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
-
-  return (
-    <div
-      ref={ref}
-      className={`bg-[#F7F2DB] rounded-lg overflow-hidden transition-all duration-700 ease-in-out ${
-        inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-      }`}
-    >
-      {/* Image */}
-      <div className="relative h-64">
-        <Image
-          src={accommodation.image || "/placeholder.svg"}
-          alt={accommodation.title}
-          fill
-          className="object-cover"
-        />
-      </div>
-
-      {/* Content */}
-      <div className="p-6">
-        <div className="flex justify-between items-start mb-4">
-          <h3 className="text-xl font-bold text-[#345E40]">
-            {accommodation.title}
-          </h3>
-          <div className="text-right">
-            <div className="flex items-center gap-2 text-sm text-gray-600 mb-1">
-              <Users className="h-4 w-4" />
-              <span>{accommodation.capacity}</span>
-            </div>
-            <div className="text-sm text-gray-600">{accommodation.size}</div>
-          </div>
-        </div>
-
-        <p className="text-[#555555] text-sm mb-6">
-          {accommodation.description}
-        </p>
-
-        <Button className="w-full bg-green-700 hover:bg-green-800 text-white">
-          CHECK AVAILABILITY
-        </Button>
-      </div>
-    </div>
-  );
-};

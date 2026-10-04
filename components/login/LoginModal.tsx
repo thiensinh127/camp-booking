@@ -12,7 +12,7 @@ export function LoginModal() {
 
   return (
     <>
-      <Button variant="outline" onClick={openModal}>
+      <Button variant="outline" className="bg-white text-[var(--forest)] hover:bg-[var(--surface-muted)]" onClick={openModal}>
         Login
       </Button>
       <LoginForm isOpen={isOpen} onClose={closeModal} />

@@ -1,119 +1,14 @@
-"use client";
+import { ArrowUpRight, Caravan, House, Tent, Trees } from "lucide-react";
+import Image from "next/image";
+import { SectionHeading } from "@/components/site/SectionHeading";
 
-import { Tent, Warehouse, CaravanIcon, Hotel, Home } from "lucide-react";
-import { Accommodation } from "./Accommodation";
-import { Feature } from "./Feature";
-import { useInView } from "react-intersection-observer";
-
-const features = [
-  {
-    icon: <CaravanIcon className="h-8 w-8" />,
-    count: 30,
-    label: "CAMPER SITES",
-  },
-  {
-    icon: <Warehouse className="h-8 w-8" />,
-    count: 25,
-    label: "CARAVAN SITES",
-  },
-  {
-    icon: <Tent className="h-8 w-8" />,
-    count: 50,
-    label: "TENT SITES",
-  },
-  {
-    icon: <Hotel className="h-8 w-8" />,
-    count: 10,
-    label: "GLAMP SITES",
-  },
-  {
-    icon: <Home className="h-8 w-8" />,
-    count: 10,
-    label: "CABIN HOUSES",
-  },
-];
-
-const accommodations = [
-  {
-    title: "Camping Area For Tents",
-    image:
-      "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-01-17%20104924-Bl1fFYgWIfW6p08ybNAHXssp4UzY9T.png",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer egestas nisi nec libero fermentum, a varius tortor venenatis. Sed vitae dolor interdum.",
-  },
-  {
-    title: "Trailers And RV Spots",
-    image:
-      "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-01-17%20104924-Bl1fFYgWIfW6p08ybNAHXssp4UzY9T.png",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer egestas nisi nec libero fermentum, a varius tortor venenatis. Sed vitae dolor interdum.",
-  },
-  {
-    title: "Cabins And Glamping",
-    image:
-      "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-01-17%20104924-Bl1fFYgWIfW6p08ybNAHXssp4UzY9T.png",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer egestas nisi nec libero fermentum, a varius tortor venenatis. Sed vitae dolor interdum.",
-  },
-];
+const stays = [
+  ["Tent Camping", "Back-to-basics pitches with room to breathe.", "50 open sites", Tent, "photo-1473445361085-b9a07f55608b"],
+  ["RV & Caravan", "Easy arrivals, thoughtful facilities, wide-open views.", "25 caravan sites", Caravan, "photo-1504280390367-361c6d9f38f4"],
+  ["Glamping", "Soft sheets, private firepits and starry skies.", "10 bell tents", Trees, "photo-1478131143081-80f7f84ca84d"],
+  ["Cabins", "A warm, quiet basecamp in the heart of nature.", "10 cabins", House, "photo-1510798831971-661eb04b3739"],
+] as const;
 
 export default function About() {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
-  return (
-    <section className="py-16 md:py-24 bg-[#F7F2DB]" id="about">
-      <div ref={ref} className="container mx-auto px-4">
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2
-            className={`text-3xl md:text-4xl font-bold mb-6 transition duration-700 ease-in-out ${
-              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-            }`}
-          >
-            Welcome To Glamour
-            <br />
-            Camping Ground
-          </h2>
-          <p
-            className={`text-gray-600 transition duration-700 ease-in-out delay-200 ${
-              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-            }`}
-          >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-            egestas nisi nec libero fermentum. A varius tortor venenatis. Sed
-            vitae dolor interdum, semper leo at, tristique nisi. Maecenas vitae
-            luctus tortor. Vel efficitur sem. Maecenas tristique sem nec magna
-            gravida varius. Aliquam nec ligula a augue congue condimentum.
-            Pellentesque ligula lorem euismod. Viverra nisi in, viverra velit.
-          </p>
-        </div>
-
-        {/* Features */}
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-16">
-          {features.map((feature, index) => (
-            <Feature
-              key={index}
-              icon={feature.icon}
-              count={feature.count}
-              label={feature.label}
-            />
-          ))}
-        </div>
-
-        {/* Accommodations */}
-        <div className="grid md:grid-cols-3 gap-8">
-          {accommodations.map((accommodation, index) => (
-            <Accommodation
-              key={index}
-              title={accommodation.title}
-              image={accommodation.image}
-              description={accommodation.description}
-            />
-          ))}
-        </div>
-      </div>
-    </section>
-  );
+  return <section id="about" className="section-space bg-[var(--warm-ivory)] pt-64 md:pt-32"><div className="page-shell"><SectionHeading align="center" eyebrow="Discover your escape" title="Stay Your Way" description="From simple tent sites to comfortable cabins, choose the outdoor experience that feels right for you." /><div className="mt-11 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">{stays.map(([title, description, availability, Icon, photo]) => <article key={title} className="group overflow-hidden rounded-2xl bg-white"><div className="relative aspect-[4/5] overflow-hidden"><Image src={`https://images.unsplash.com/${photo}?auto=format&fit=crop&w=900&q=82`} alt={title} fill sizes="(min-width: 1280px) 25vw, (min-width: 640px) 50vw, 100vw" className="object-cover transition duration-500 group-hover:scale-105" /><div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/65 to-transparent" /><div className="absolute inset-x-0 bottom-0 p-5 text-white"><span className="text-xs font-semibold uppercase tracking-wider text-white/75">{availability}</span><div className="mt-2 flex items-end justify-between"><div><Icon className="mb-2 size-5" /><h3 className="font-heading text-xl font-bold">{title}</h3></div><ArrowUpRight className="size-5 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" /></div></div></div><p className="p-5 text-sm leading-6 text-[var(--text-secondary)]">{description}</p></article>)}</div></div></section>;
 }

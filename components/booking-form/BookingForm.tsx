@@ -2,134 +2,24 @@
 
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { format } from "date-fns";
-import { CalendarIcon, Users, Tent } from "lucide-react";
+import { CalendarIcon, Search, Tent, Users } from "lucide-react";
 import { useState } from "react";
 
 export function BookingForm() {
   const [checkIn, setCheckIn] = useState<Date>();
   const [checkOut, setCheckOut] = useState<Date>();
+  const fieldClass = "h-12 border-0 bg-transparent px-0 text-sm font-semibold shadow-none hover:bg-transparent focus:ring-0";
+  return <div id="booking" className="absolute inset-x-0 bottom-0 z-20 translate-y-1/2 px-4 md:px-6 xl:px-8"><div className="mx-auto max-w-[1200px] rounded-2xl border border-[var(--line)] bg-white p-4 shadow-[0_20px_60px_rgba(18,37,28,.16)] md:p-5"><div className="grid gap-2 md:grid-cols-2 lg:grid-cols-[repeat(4,minmax(0,1fr))_auto] lg:gap-0">
+    <DateField label="Check in" date={checkIn} onSelect={setCheckIn} className="lg:border-r" fieldClass={fieldClass} /><DateField label="Check out" date={checkOut} onSelect={setCheckOut} className="lg:border-r" fieldClass={fieldClass} />
+    <div className="min-w-0 rounded-xl px-3 py-2 lg:rounded-none lg:border-r"><p className="flex items-center gap-2 text-xs font-semibold text-[var(--text-secondary)]"><Users className="size-3.5" /> Guests</p><Select defaultValue="1"><SelectTrigger className={fieldClass}><SelectValue /></SelectTrigger><SelectContent><SelectItem value="1">1 guest</SelectItem><SelectItem value="2">2 guests</SelectItem><SelectItem value="3">3 guests</SelectItem><SelectItem value="4">4 guests</SelectItem></SelectContent></Select></div>
+    <div className="min-w-0 rounded-xl px-3 py-2 lg:rounded-none"><p className="flex items-center gap-2 text-xs font-semibold text-[var(--text-secondary)]"><Tent className="size-3.5" /> Stay type</p><Select defaultValue="tent"><SelectTrigger className={fieldClass}><SelectValue /></SelectTrigger><SelectContent><SelectItem value="glamping">Glamping</SelectItem><SelectItem value="cabin">Cabin</SelectItem><SelectItem value="tent">Tent site</SelectItem><SelectItem value="rv">RV site</SelectItem></SelectContent></Select></div>
+    <Button className="h-12 self-center rounded-xl bg-[var(--forest)] px-5 text-white hover:bg-[var(--forest-hover)]"><Search /> Search stays</Button>
+  </div></div></div>;
+}
 
-  return (
-    <div className="absolute left-0 right-0 -bottom-14 bg-white p-4 shadow-lg w-3/4 mx-auto rounded-lg">
-      <div className="container mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-          {/* Check In */}
-          <div className="space-y-1">
-            <label className="text-sm font-medium flex items-center gap-2">
-              <CalendarIcon className="h-4 w-4" />
-              CHECK IN
-            </label>
-            <Popover>
-              <PopoverTrigger asChild>
-                <Button
-                  variant="outline"
-                  className="w-full justify-start text-left font-normal"
-                >
-                  {checkIn
-                    ? format(checkIn, "EEE, dd MMM yyyy")
-                    : "Select date"}
-                </Button>
-              </PopoverTrigger>
-              <PopoverContent className="w-auto p-0">
-                <Calendar
-                  mode="single"
-                  selected={checkIn}
-                  onSelect={setCheckIn}
-                  initialFocus
-                />
-              </PopoverContent>
-            </Popover>
-          </div>
-
-          {/* Check Out */}
-          <div className="space-y-1">
-            <label className="text-sm font-medium flex items-center gap-2">
-              <CalendarIcon className="h-4 w-4" />
-              CHECK OUT
-            </label>
-            <Popover>
-              <PopoverTrigger asChild>
-                <Button
-                  variant="outline"
-                  className="w-full justify-start text-left font-normal"
-                >
-                  {checkOut
-                    ? format(checkOut, "EEE, dd MMM yyyy")
-                    : "Select date"}
-                </Button>
-              </PopoverTrigger>
-              <PopoverContent className="w-auto p-0">
-                <Calendar
-                  mode="single"
-                  selected={checkOut}
-                  onSelect={setCheckOut}
-                  initialFocus
-                />
-              </PopoverContent>
-            </Popover>
-          </div>
-
-          {/* Guests */}
-          <div className="space-y-1">
-            <label className="text-sm font-medium flex items-center gap-2">
-              <Users className="h-4 w-4" />
-              GUESTS
-            </label>
-            <Select defaultValue="1">
-              <SelectTrigger>
-                <SelectValue placeholder="Select guests" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="1">1 Adult</SelectItem>
-                <SelectItem value="2">2 Adults</SelectItem>
-                <SelectItem value="3">3 Adults</SelectItem>
-                <SelectItem value="4">4 Adults</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-
-          {/* Accommodation */}
-          <div className="space-y-1">
-            <label className="text-sm font-medium flex items-center gap-2">
-              <Tent className="h-4 w-4" />
-              ACCOMMODATION
-            </label>
-            <Select defaultValue="tent">
-              <SelectTrigger>
-                <SelectValue placeholder="Select accommodation" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="tent">Tent</SelectItem>
-                <SelectItem value="cabin">Cabin</SelectItem>
-                <SelectItem value="rv">RV Spot</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-
-          {/* Book Now Button */}
-          <div className="flex items-end">
-            <Button
-              className="w-full bg-green-700 hover:bg-green-800 text-white"
-              size="lg"
-            >
-              BOOK NOW
-            </Button>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+function DateField({ label, date, onSelect, className, fieldClass }: { label: string; date?: Date; onSelect: (date?: Date) => void; className: string; fieldClass: string }) {
+  return <div className={`min-w-0 rounded-xl px-3 py-2 lg:rounded-none ${className}`}><p className="flex items-center gap-2 text-xs font-semibold text-[var(--text-secondary)]"><CalendarIcon className="size-3.5" /> {label}</p><Popover><PopoverTrigger asChild><Button variant="outline" className={`w-full justify-start ${fieldClass}`}>{date ? format(date, "EEE, dd MMM") : "Select date"}</Button></PopoverTrigger><PopoverContent className="w-auto p-0"><Calendar mode="single" selected={date} onSelect={onSelect} initialFocus /></PopoverContent></Popover></div>;
 }

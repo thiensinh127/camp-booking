@@ -1,0 +1,6 @@
+import { Baby, Heart, MapPin, ShieldCheck, Sparkles, Wifi } from "lucide-react";
+import { SectionHeading } from "./SectionHeading";
+
+const benefits = [[MapPin, "Nature-first locations", "Beautiful places, thoughtfully kept."], [ShieldCheck, "Private & peaceful", "Space to settle into your own rhythm."], [Sparkles, "Modern facilities", "The comforts that make outdoor easy."], [Baby, "Family friendly", "Fresh-air memories for every age."], [Heart, "Pet friendly", "Bring your favourite trail buddy."], [Wifi, "Easy online booking", "Plan the escape in just a few clicks."]] as const;
+
+export function Benefits() { return <section className="section-space bg-[var(--surface-muted)]"><div className="page-shell"><SectionHeading align="center" eyebrow="Why Camp Haven" title="Everything You Need. Nothing You Don&apos;t." /><div className="mt-10 grid gap-px overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--line)] sm:grid-cols-2 lg:grid-cols-3">{benefits.map(([Icon, title, description]) => <article key={title} className="bg-[var(--surface-muted)] p-6"><Icon className="size-6 text-[var(--forest)]" /><h3 className="mt-5 font-heading text-lg font-bold">{title}</h3><p className="mt-2 text-sm leading-6 text-[var(--text-secondary)]">{description}</p></article>)}</div></div></section>; }

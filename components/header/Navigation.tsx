@@ -9,120 +9,38 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { LoginModal } from "../login/LoginModal";
 
+const links = [
+  { href: "#home", label: "Home" }, { href: "#about", label: "Stays" },
+  { href: "#activity", label: "Activities" }, { href: "#news", label: "Journal" },
+  { href: "#gallery", label: "Gallery" },
+];
+
 export function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [activeLink, setActiveLink] = useState("#home");
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
-  const handleScroll = (event: React.MouseEvent, href: string) => {
-    event.preventDefault();
-    setActiveLink(href);
-    const targetElement = document.getElementById(href.substring(1));
-    if (targetElement) {
-      targetElement.scrollIntoView({ behavior: "smooth" });
-    }
-    setIsMenuOpen(false);
-  };
-
-  // Add scroll listener to add shadow effect
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 0);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    const onScroll = () => setIsScrolled(window.scrollY > 24);
+    onScroll(); window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const links = [
-    { href: "#home", label: "Home" },
-    { href: "#about", label: "About" },
-    { href: "#activity", label: "Activity" },
-    { href: "#news", label: "News" },
-  ];
-
-  return (
-    <nav
-      className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        isScrolled ? "bg-black/90 shadow-lg" : "bg-transparent"
-      )}
-    >
-      <div className="container mx-auto px-4 py-6">
-        <div className="flex items-center justify-between">
-          {/* Logo */}
-          <Link
-            href="/"
-            className="text-white text-2xl font-bold flex items-center gap-2 z-50 "
-          >
-            <Image
-              src={Logo}
-              alt="Logo"
-              width={isScrolled ? 80 : 152}
-              height={isScrolled ? 20 : 50}
-              className="transition-all duration-300 ease-in-out"
-            />
-          </Link>
-
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
-            {links.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={(e) => handleScroll(e, link.href)}
-                className={cn(
-                  "text-white cursor-pointer hover:text-gray-200 px-4 py-2 transition",
-                  activeLink === link.href ? "bg-white text-black rounded" : ""
-                )}
-              >
-                {link.label}
-              </a>
-            ))}
-            <LoginModal />
-          </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            onClick={toggleMenu}
-            className="md:hidden z-50 text-white hover:text-gray-200"
-            aria-label="Toggle menu"
-          >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
-
-        {/* Mobile Navigation */}
-        <div
-          className={cn(
-            "fixed inset-0 bg-black/95 flex flex-col items-center justify-center gap-8 transition-transform duration-300 ease-in-out md:hidden",
-            isMenuOpen ? "translate-x-0" : "translate-x-full"
-          )}
-        >
-          {links.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              onClick={(e) => handleScroll(e, link.href)}
-              className="text-white text-2xl cursor-pointer hover:text-gray-200"
-            >
-              {link.label}
-            </a>
-          ))}
-          <Button
-            variant="outline"
-            className="bg-white text-black hover:bg-gray-100 text-xl px-8 py-4"
-            onClick={() => setIsMenuOpen(false)}
-          >
-            BOOK
-          </Button>
-        </div>
+  return <nav className={cn("fixed inset-x-0 top-0 z-50 border-b transition-all duration-300", isScrolled ? "border-[var(--line)] bg-[color:rgb(247_245_238_/_0.92)] text-[var(--text-primary)] lg:backdrop-blur" : "border-transparent bg-transparent text-white")}>
+    <div className="page-shell flex h-[76px] items-center justify-between gap-5">
+      <Link href="#home" aria-label="Camp Haven home" className="relative z-50 flex items-center"><Image src={Logo} alt="Camp Haven" width={112} className="h-auto w-24 object-contain sm:w-28" priority /></Link>
+      <div className="hidden items-center gap-6 lg:flex">
+        {links.map((link) => <a key={link.href} href={link.href} className="border-b-2 border-transparent py-2 text-sm font-semibold transition hover:border-current hover:opacity-75">{link.label}</a>)}
+        <LoginModal />
+        <Button asChild className="h-11 rounded-xl bg-[var(--forest)] px-5 text-white hover:bg-[var(--forest-hover)]"><a href="#booking">Book your stay</a></Button>
       </div>
-    </nav>
-  );
+      <div className="relative z-50 flex items-center gap-2 lg:hidden">
+        <a href="#booking" className={cn("rounded-lg px-3 py-2 text-sm font-bold", isScrolled ? "bg-[var(--forest)] text-white" : "bg-white text-[var(--forest)]")}>Book</a>
+        <button type="button" aria-label="Toggle navigation" aria-expanded={isMenuOpen} onClick={() => setIsMenuOpen((value) => !value)} className="grid size-11 place-items-center rounded-lg border border-current/30">{isMenuOpen ? <X size={21} /> : <Menu size={23} />}</button>
+      </div>
+      {isMenuOpen && <div className="fixed inset-0 flex flex-col items-center justify-center gap-7 overflow-y-auto bg-[var(--dark-forest)] px-6 text-center text-white lg:hidden">
+        {links.map((link) => <a key={link.href} href={link.href} onClick={() => setIsMenuOpen(false)} className="font-heading text-3xl font-bold">{link.label}</a>)}
+        <LoginModal />
+        <Button asChild className="h-12 rounded-xl bg-white px-6 text-[var(--forest)] hover:bg-[var(--surface-muted)]"><a href="#booking" onClick={() => setIsMenuOpen(false)}>Book your stay</a></Button>
+      </div>}
+    </div>
+  </nav>;
 }
