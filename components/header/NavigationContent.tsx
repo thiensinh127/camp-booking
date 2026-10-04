@@ -1,106 +1,18 @@
 "use client";
 
-import { Play, ChevronLeft, ChevronRight, X } from "lucide-react";
-import React, { useEffect, useState } from "react";
+import { Play } from "lucide-react";
+import { useState } from "react";
 import { Button } from "../ui/button";
-import { useInView } from "react-intersection-observer";
 
-const NavigationContent = () => {
+export default function NavigationContent() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleWatchVideo = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-
-  const [contentRef, contentInView] = useInView({
-    triggerOnce: true,
-    threshold: 0.2,
-  });
-
-  useEffect(() => {
-    if (isModalOpen) {
-      document.body.style.overflow = "hidden"; // Disable scroll
-    } else {
-      document.body.style.overflow = ""; // Enable scroll
-    }
-
-    return () => {
-      document.body.style.overflow = ""; // Clean up on unmount
-    };
-  }, [isModalOpen]);
-
-  return (
-    <div className="relative h-full flex items-center" id="home">
-      <div
-        ref={contentRef}
-        className={`container mx-auto w-3/4 transition-all duration-700 ease-in-out ${
-          contentInView
-            ? "opacity-100 translate-x-0"
-            : "opacity-0 -translate-x-10"
-        }`}
-      >
-        <div className="max-w-3xl">
-          <p className="text-white text-lg mb-4">Let's Make S'more Memories</p>
-          <h1 className="text-white text-4xl md:text-6xl font-bold leading-tight mb-8">
-            CAMP IS MORE THAN JUST A WORD,
-            <br />
-            IT'S AN EXPERIENCE!
-          </h1>
-          <Button
-            variant="outline"
-            className="bg-white/10 text-white border-white hover:bg-white/20 hover:text-white"
-            size="lg"
-            onClick={handleWatchVideo}
-          >
-            <Play className="mr-2 h-4 w-4" /> Watch This Video
-          </Button>
-        </div>
-      </div>
-
-      {/* Navigation Arrows */}
-      <button
-        className={`absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-all duration-700 ease-in-out `}
-        aria-label="Previous slide"
-      >
-        <ChevronLeft className="h-6 w-6" />
-      </button>
-
-      <button
-        className={`absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-all duration-700 ease-in-out 
-         `}
-        aria-label="Next slide"
-      >
-        <ChevronRight className="h-6 w-6" />
-      </button>
-
-      {/* Video Modal */}
-      {isModalOpen && (
-        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50">
-          <div className="relative bg-black rounded-lg p-6 max-w-4xl w-full">
-            <button
-              className="absolute top-4 right-4 text-white hover:text-gray-400"
-              onClick={closeModal}
-            >
-              <X size={24} />
-            </button>
-            <div className="aspect-w-16 aspect-h-9">
-              <iframe
-                src="https://www.youtube.com/embed/your-video-id"
-                title="YouTube video"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                className="w-full h-full rounded-lg"
-              ></iframe>
-            </div>
-          </div>
-        </div>
-      )}
+  return <div id="home" className="page-shell relative z-10 flex min-h-[640px] items-center pb-24 pt-32 md:min-h-[720px] md:pb-28">
+    <div className="max-w-2xl text-white">
+      <p className="mb-5 text-xs font-bold tracking-[0.2em] text-white/75">ESCAPE • EXPLORE • UNWIND</p>
+      <h1 className="font-heading text-[clamp(2.5rem,6vw,4rem)] font-bold leading-[1.06] tracking-[-0.04em]">Sleep Under the Stars.<br />Wake Up Somewhere Better.</h1>
+      <p className="mt-6 max-w-xl text-base leading-7 text-white/80 md:text-lg">Discover peaceful campsites, premium glamping stays and unforgettable outdoor experiences.</p>
+      <div className="mt-9 flex flex-wrap gap-3"><Button asChild size="lg" className="h-12 rounded-xl bg-white px-6 font-semibold text-[var(--forest)] hover:bg-[var(--surface-muted)]"><a href="#about">Explore stays</a></Button><Button variant="outline" size="lg" onClick={() => setIsModalOpen(true)} className="h-12 rounded-xl border-white/40 bg-white/10 px-6 text-white hover:bg-white/20 hover:text-white"><Play /> Watch experience</Button></div>
     </div>
-  );
-};
-
-export default NavigationContent;
+    {isModalOpen && <div role="dialog" aria-modal="true" aria-label="Camp experience video" className="fixed inset-0 z-[60] grid place-items-center bg-black/80 p-4"><div className="w-full max-w-3xl rounded-2xl bg-[var(--dark-forest)] p-5 shadow-2xl"><div className="mb-4 flex items-center justify-between text-white"><strong>Camp Haven experience</strong><button onClick={() => setIsModalOpen(false)} className="rounded-lg px-3 py-2 text-sm hover:bg-white/10">Close</button></div><div className="grid aspect-video place-items-center rounded-xl bg-black/30 text-center text-white/70">Our camp film is coming soon.</div></div></div>}
+  </div>;
+}

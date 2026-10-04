@@ -12,11 +12,13 @@ import Footer from "@/components/footer/Footer";
 
 export default function Page() {
   return (
-    <div className="relative h-screen w-full">
-      <OverLay />
-      <Navigation />
-      <NavigationContent />
-      <BookingForm />
+    <main className="overflow-x-clip bg-[var(--warm-ivory)]">
+      <section className="relative min-h-[640px] md:min-h-[720px]">
+        <OverLay />
+        <Navigation />
+        <NavigationContent />
+        <BookingForm />
+      </section>
       <About />
       <Activity />
       <Booking />
@@ -24,6 +26,6 @@ export default function Page() {
       <Gallery />
       <Footer />
       <BackToTopButton />
-    </div>
+    </main>
   );
 }
