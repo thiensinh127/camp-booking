@@ -9,6 +9,9 @@ import BackToTopButton from "@/components/back-to-top";
 import News from "./news/page";
 import Gallery from "./gallery/page";
 import Footer from "@/components/footer/Footer";
+import { Benefits } from "@/components/site/Benefits";
+import { Testimonials } from "@/components/site/Testimonials";
+import { FinalCta } from "@/components/site/FinalCta";
 
 export default function Page() {
   return (
@@ -22,8 +25,11 @@ export default function Page() {
       <About />
       <Activity />
       <Booking />
+      <Benefits />
+      <Testimonials />
       <News />
       <Gallery />
+      <FinalCta />
       <Footer />
       <BackToTopButton />
     </main>
