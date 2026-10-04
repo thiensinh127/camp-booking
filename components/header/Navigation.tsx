@@ -24,7 +24,7 @@ export function Navigation() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  return <nav className={cn("fixed inset-x-0 top-0 z-50 border-b transition-all duration-300", isScrolled ? "border-[var(--line)] bg-[color:rgb(247_245_238_/_0.92)] text-[var(--text-primary)] backdrop-blur" : "border-transparent bg-transparent text-white")}>
+  return <nav className={cn("fixed inset-x-0 top-0 z-50 border-b transition-all duration-300", isScrolled ? "border-[var(--line)] bg-[color:rgb(247_245_238_/_0.92)] text-[var(--text-primary)] lg:backdrop-blur" : "border-transparent bg-transparent text-white")}>
     <div className="page-shell flex h-[76px] items-center justify-between gap-5">
       <Link href="#home" aria-label="Camp Haven home" className="relative z-50 flex items-center"><Image src={Logo} alt="Camp Haven" width={112} className="h-auto w-24 object-contain sm:w-28" priority /></Link>
       <div className="hidden items-center gap-6 lg:flex">
@@ -36,11 +36,11 @@ export function Navigation() {
         <a href="#booking" className={cn("rounded-lg px-3 py-2 text-sm font-bold", isScrolled ? "bg-[var(--forest)] text-white" : "bg-white text-[var(--forest)]")}>Book</a>
         <button type="button" aria-label="Toggle navigation" aria-expanded={isMenuOpen} onClick={() => setIsMenuOpen((value) => !value)} className="grid size-11 place-items-center rounded-lg border border-current/30">{isMenuOpen ? <X size={21} /> : <Menu size={23} />}</button>
       </div>
-      <div className={cn("fixed inset-0 flex flex-col items-center justify-center gap-7 bg-[var(--dark-forest)] text-white transition-transform duration-300 lg:hidden", isMenuOpen ? "translate-x-0" : "translate-x-full")}>
+      {isMenuOpen && <div className="fixed inset-0 flex flex-col items-center justify-center gap-7 overflow-y-auto bg-[var(--dark-forest)] px-6 text-center text-white lg:hidden">
         {links.map((link) => <a key={link.href} href={link.href} onClick={() => setIsMenuOpen(false)} className="font-heading text-3xl font-bold">{link.label}</a>)}
         <LoginModal />
         <Button asChild className="h-12 rounded-xl bg-white px-6 text-[var(--forest)] hover:bg-[var(--surface-muted)]"><a href="#booking" onClick={() => setIsMenuOpen(false)}>Book your stay</a></Button>
-      </div>
+      </div>}
     </div>
   </nav>;
 }
