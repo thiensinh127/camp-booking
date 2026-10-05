@@ -53,8 +53,12 @@ if (!bookingCard.includes("rounded-[1.75rem]") || !benefits.includes("rounded-[1
 }
 
 const news = readFileSync("app/news/page.tsx", "utf8");
-if (!news.includes("lg:grid-cols-[1.05fr_.95fr]") || !news.includes("rounded-[1.75rem]")) {
+if (!news.includes("lg:grid-cols-[1.05fr_.95fr]") || !news.includes("minmax(0,.9fr)") || !news.includes("min-w-0")) {
   throw new Error("journal section is missing its editorial layout");
+}
+
+if (!navigation.includes("lg:rounded-[1.5rem]") || !bookingForm.includes("max-h-[78dvh]") || !bookingForm.includes("lg:divide-x")) {
+  throw new Error("header and booking controls are missing their responsive layout");
 }
 
 console.log("localized homepage content is wired");
