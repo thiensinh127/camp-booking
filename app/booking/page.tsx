@@ -2,9 +2,9 @@
 import { AccommodationItem } from "./BookingCard";
 import { SectionHeading } from "@/components/site/SectionHeading";
 import { useLanguage } from "@/components/i18n/LanguageProvider";
-import ForestCamp from "@/public/assets/pexels-10601360.webp";
-import MountainCamp from "@/public/assets/pexels-1687845.webp";
-import NightGlamping from "@/public/assets/pexels-2666598.webp";
+import ForestCamp from "@/public/assets/pexels-nguyendesigner-16671235.webp";
+import MountainCamp from "@/public/assets/pexels-nguyndoanfoto-38435444.webp";
+import NightGlamping from "@/public/assets/pexels-quang-nguyen-vinh-222549-32307789.webp";
 
 const images = [NightGlamping, MountainCamp, ForestCamp];
 
