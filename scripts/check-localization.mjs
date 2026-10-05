@@ -37,6 +37,11 @@ if (!navigation.includes("camp-haven-logo.png") || !footer.includes("camp-haven-
   throw new Error("header and footer Camp Haven logo is missing");
 }
 
+const layout = readFileSync("app/layout.tsx", "utf8");
+if (!layout.includes("Be_Vietnam_Pro") || !layout.includes("--font-be-vietnam") || layout.includes("/favicon.png")) {
+  throw new Error("global Be Vietnam Pro typography or icon metadata is missing");
+}
+
 const imageFiles = ["app/about/page.tsx", "app/activity/page.tsx", "app/booking/page.tsx", "app/news/page.tsx", "app/gallery/page.tsx", "components/site/FinalCta.tsx"];
 for (const file of imageFiles) {
   const source = readFileSync(file, "utf8");

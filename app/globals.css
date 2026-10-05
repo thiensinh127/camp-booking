@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  font-family: var(--font-inter), Arial, sans-serif;
+  font-family: var(--font-be-vietnam), Arial, sans-serif;
 }
 
 html {
@@ -97,7 +97,7 @@ html body[data-scroll-locked] {
   h2,
   h3,
   h4 {
-    font-family: var(--font-manrope), Arial, sans-serif;
+    font-family: var(--font-be-vietnam), Arial, sans-serif;
   }
 
   :focus-visible {
