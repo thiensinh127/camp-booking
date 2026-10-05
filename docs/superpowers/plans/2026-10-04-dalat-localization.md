@@ -34,36 +34,36 @@
 - Create: `components/i18n/content.ts`
 - Modify: `app/layout.tsx`, `app/page.tsx`
 
-- [ ] Add a failing source/render check for Vietnamese defaults and language persistence.
-- [ ] Implement `Locale`, dictionary, provider, and language trigger API with Vietnamese pre-hydration fallback.
-- [ ] Run the check and `npm run build`.
-- [ ] Commit `feat: add Vietnamese language foundation`.
+- [x] Add a failing source/render check for Vietnamese defaults and language persistence.
+- [x] Implement `Locale`, dictionary, provider, and language trigger API with Vietnamese pre-hydration fallback.
+- [x] Run the check and `npm run build`.
+- [x] Commit `feat: add Vietnamese language foundation`.
 
 ### Task 2: Header and responsive search
 
 **Files:**
 - Modify: `components/header/Navigation.tsx`, `components/header/NavigationContent.tsx`, `components/booking-form/BookingForm.tsx`
 
-- [ ] Add a failing check for locale trigger, accessible drawer, mobile filter summary/sheet, and retained defaults.
-- [ ] Implement locale-aware desktop header, compact mobile header/drawer, and mobile search bottom sheet using current calendar/select primitives.
-- [ ] Verify 320px and desktop UI plus `npm run build`.
-- [ ] Commit `feat: redesign localized navigation and search`.
+- [x] Add a failing check for locale trigger, accessible drawer, mobile filter summary/sheet, and retained defaults.
+- [x] Implement locale-aware desktop header, compact mobile header/drawer, and mobile search bottom sheet using current calendar/select primitives.
+- [x] Verify 320px and desktop UI plus `npm run build`.
+- [x] Commit `feat: redesign localized navigation and search`.
 
 ### Task 3: Da Lat localized homepage content
 
 **Files:**
 - Modify: homepage section modules in `app/about`, `app/activity`, `app/booking`, `app/news`, `app/gallery`, `components/site`, and `components/footer/Footer.tsx`
 
-- [ ] Add failing content checks for Vietnamese Da Lat references and English fallback content.
-- [ ] Replace generic copy/imagery metadata with dictionary-backed Da Lat content and accessible language-aware alternatives.
-- [ ] Verify language toggle plus `npm run build`.
-- [ ] Commit `feat: localize Da Lat guest experience`.
+- [x] Add failing content checks for Vietnamese Da Lat references and English fallback content.
+- [x] Replace generic copy/imagery metadata with dictionary-backed Da Lat content and accessible language-aware alternatives.
+- [x] Verify language toggle plus `npm run build`.
+- [x] Commit `feat: localize Da Lat guest experience`.
 
 ### Task 4: QA and delivery
 
 **Files:**
 - Modify: only audit findings; create `docs/lighthouse/2026-10-04-dalat-localization.md`
 
-- [ ] Run production build, mobile/desktop Lighthouse, and keyboard/responsive smoke checks.
+- [ ] Run production build, mobile/desktop Lighthouse, and keyboard/responsive smoke checks. Lighthouse is not installed; see `docs/lighthouse/2026-10-04-dalat-localization.md`.
 - [ ] Fix evidence-backed issues with a RED→GREEN check.
 - [ ] Commit QA results, push branch, create PR to `main`, and merge only after fresh verification.

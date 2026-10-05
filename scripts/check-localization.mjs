@@ -21,4 +21,9 @@ for (const file of files) {
   }
 }
 
+const bookingForm = readFileSync("components/booking-form/BookingForm.tsx", "utf8");
+if (!bookingForm.includes("t.selectDate") || !bookingForm.includes("t.tent")) {
+  throw new Error("booking controls do not use localized defaults");
+}
+
 console.log("localized homepage content is wired");
