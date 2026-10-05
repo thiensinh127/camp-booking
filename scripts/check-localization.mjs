@@ -81,6 +81,11 @@ if (!heroContent.includes("createPortal") || !benefits.includes("lg:col-span-2")
   throw new Error("experience modal or benefits layout is missing its refreshed structure");
 }
 
+const gallery = readFileSync("app/gallery/page.tsx", "utf8");
+if (!gallery.includes("CampFriends") || !gallery.includes("index === 5") || !benefits.includes('from "next/image"') || !benefits.includes("camp-haven-campsite-valley.webp") || !benefits.includes("bg-[var(--warm-ivory)]/")) {
+  throw new Error("gallery collage or benefits background treatment is missing");
+}
+
 if (!news.includes("camp-haven-campsite-valley.webp") || !activity.includes("camp-haven-tent-communal.webp")) {
   throw new Error("journal and experience images do not use the new camp photos");
 }
