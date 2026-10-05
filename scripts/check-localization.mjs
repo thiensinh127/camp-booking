@@ -57,9 +57,23 @@ if (!activity.includes("bg-[radial-gradient") || !activity.includes("rounded-[2.
   throw new Error("activity panel or responsive typography scale is missing");
 }
 
+if (activity.includes("hover:-translate") || !activity.includes("transition-colors duration-200 ease-out")) {
+  throw new Error("activity hover treatment is still moving its icons");
+}
+
+const visualSources = ["app/about/page.tsx", "app/booking/BookingCard.tsx", "app/gallery/page.tsx", "app/news/page.tsx"].map((file) => readFileSync(file, "utf8"));
+if (visualSources.some((source) => source.includes("scale-105") || source.includes("scale-[1.04]"))) {
+  throw new Error("image hover treatment is still too aggressive");
+}
+
 const news = readFileSync("app/news/page.tsx", "utf8");
 if (!news.includes("lg:grid-cols-[1.05fr_.95fr]") || !news.includes("minmax(0,.9fr)") || !news.includes("min-w-0")) {
   throw new Error("journal section is missing its editorial layout");
+}
+
+const heroContent = readFileSync("components/header/NavigationContent.tsx", "utf8");
+if (!heroContent.includes("createPortal") || !benefits.includes("lg:col-span-2")) {
+  throw new Error("experience modal or benefits layout is missing its refreshed structure");
 }
 
 if (!news.includes("pexels-nguyndoanfoto-38435448.webp") || !activity.includes("pexels-dongdilac-33901356.webp")) {
