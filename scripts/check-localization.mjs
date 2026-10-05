@@ -48,8 +48,13 @@ for (const file of imageFiles) {
 const bookingCard = readFileSync("app/booking/BookingCard.tsx", "utf8");
 const benefits = readFileSync("components/site/Benefits.tsx", "utf8");
 const activity = readFileSync("app/activity/page.tsx", "utf8");
-if (!bookingCard.includes("rounded-[1.75rem]") || !benefits.includes("rounded-[1.5rem]") || !activity.includes("border-l-2")) {
+if (!bookingCard.includes("rounded-[1.75rem]") || !benefits.includes("rounded-[1.5rem]")) {
   throw new Error("homepage feature sections are missing their refreshed visual treatments");
+}
+
+const globals = readFileSync("app/globals.css", "utf8");
+if (!activity.includes("bg-[radial-gradient") || !activity.includes("rounded-[2.5rem]") || !globals.includes("font-size: clamp(15px")) {
+  throw new Error("activity panel or responsive typography scale is missing");
 }
 
 const news = readFileSync("app/news/page.tsx", "utf8");
