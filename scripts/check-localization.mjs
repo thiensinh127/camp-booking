@@ -33,8 +33,8 @@ if (!overlay.includes('from "next/image"') || !overlay.includes("priority")) {
 
 const navigation = readFileSync("components/header/Navigation.tsx", "utf8");
 const footer = readFileSync("components/footer/Footer.tsx", "utf8");
-if (!navigation.includes("logo-filter") || !footer.includes('from "next/image"')) {
-  throw new Error("header and footer logo treatments are missing");
+if (!navigation.includes("camp-haven-logo.png") || !footer.includes("camp-haven-logo.png")) {
+  throw new Error("header and footer Camp Haven logo is missing");
 }
 
 const imageFiles = ["app/about/page.tsx", "app/activity/page.tsx", "app/booking/page.tsx", "app/news/page.tsx", "app/gallery/page.tsx", "components/site/FinalCta.tsx"];
@@ -50,6 +50,11 @@ const benefits = readFileSync("components/site/Benefits.tsx", "utf8");
 const activity = readFileSync("app/activity/page.tsx", "utf8");
 if (!bookingCard.includes("rounded-[1.75rem]") || !benefits.includes("rounded-[1.5rem]") || !activity.includes("border-l-2")) {
   throw new Error("homepage feature sections are missing their refreshed visual treatments");
+}
+
+const news = readFileSync("app/news/page.tsx", "utf8");
+if (!news.includes("lg:grid-cols-[1.05fr_.95fr]") || !news.includes("rounded-[1.75rem]")) {
+  throw new Error("journal section is missing its editorial layout");
 }
 
 console.log("localized homepage content is wired");
