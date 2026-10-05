@@ -45,4 +45,11 @@ for (const file of imageFiles) {
   }
 }
 
+const bookingCard = readFileSync("app/booking/BookingCard.tsx", "utf8");
+const benefits = readFileSync("components/site/Benefits.tsx", "utf8");
+const activity = readFileSync("app/activity/page.tsx", "utf8");
+if (!bookingCard.includes("rounded-[1.75rem]") || !benefits.includes("rounded-[1.5rem]") || !activity.includes("border-l-2")) {
+  throw new Error("homepage feature sections are missing their refreshed visual treatments");
+}
+
 console.log("localized homepage content is wired");
