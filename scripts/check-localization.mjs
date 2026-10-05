@@ -26,4 +26,9 @@ if (!bookingForm.includes("t.selectDate") || !bookingForm.includes("t.tent")) {
   throw new Error("booking controls do not use localized defaults");
 }
 
+const overlay = readFileSync("components/OverLay.tsx", "utf8");
+if (!overlay.includes('from "next/image"') || !overlay.includes("priority")) {
+  throw new Error("hero image is not responsive and prioritized");
+}
+
 console.log("localized homepage content is wired");
