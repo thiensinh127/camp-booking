@@ -4,7 +4,7 @@ import Image from "next/image";
 import { SectionHeading } from "@/components/site/SectionHeading";
 import { useLanguage } from "@/components/i18n/LanguageProvider";
 import ForestPath from "@/public/assets/pexels-quachtungduong-34668894.webp";
-import MountainLake from "@/public/assets/pexels-dongdilac-33901356.webp";
+import MountainLake from "@/public/assets/pexels-nguyndoanfoto-38435448.webp";
 import WoodlandCampfire from "@/public/assets/pexels-pixelman-dapha-2147725010-30563254.webp";
 
 const photos = [MountainLake, ForestPath, WoodlandCampfire];

@@ -57,6 +57,10 @@ if (!news.includes("lg:grid-cols-[1.05fr_.95fr]") || !news.includes("minmax(0,.9
   throw new Error("journal section is missing its editorial layout");
 }
 
+if (!news.includes("pexels-nguyndoanfoto-38435448.webp") || !activity.includes("pexels-dongdilac-33901356.webp")) {
+  throw new Error("journal and experience images are not swapped");
+}
+
 if (!navigation.includes("lg:rounded-[1.5rem]") || !bookingForm.includes("max-h-[78dvh]") || !bookingForm.includes("lg:divide-x")) {
   throw new Error("header and booking controls are missing their responsive layout");
 }
