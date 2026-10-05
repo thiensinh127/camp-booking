@@ -1,4 +1,27 @@
+"use client";
+
 import Image from "next/image";
 import { SectionHeading } from "@/components/site/SectionHeading";
-const photos = ["photo-1470770841072-f978cf4d019e", "photo-1500530855697-b586d89ba3ee", "photo-1507525428034-b723cf961d3e", "photo-1449158743715-0a90ebb6d2d8", "photo-1494548162494-384bba4ab999"];
-export default function Gallery() { return <section id="gallery" className="section-space bg-white"><div className="page-shell"><div className="flex flex-wrap items-end justify-between gap-5"><SectionHeading eyebrow="The camp journal" title="Life at Camp" description="Small moments, big skies and no rush to be anywhere else." /><a href="#" className="text-sm font-bold text-[var(--forest)]">View gallery →</a></div><div className="mt-10 grid auto-rows-[170px] grid-cols-2 gap-3 md:auto-rows-[220px] md:grid-cols-4">{photos.map((photo, index) => <div key={photo} className={`relative overflow-hidden rounded-2xl ${index === 0 ? "col-span-2 row-span-2" : index === 3 ? "col-span-2" : ""}`}><Image src={`https://images.unsplash.com/${photo}?auto=format&fit=crop&w=900&q=82`} alt="Camp life" fill sizes="(min-width: 768px) 25vw, 50vw" className="object-cover transition duration-500 hover:scale-105" /></div>)}</div></div></section>; }
+import { useLanguage } from "@/components/i18n/LanguageProvider";
+import CampFriends from "@/public/assets/pexels-nguyndoanfoto-38435448.webp";
+import Campfire from "@/public/assets/camp-haven-tent-garden.webp";
+import ForestCamp from "@/public/assets/camp-haven-tent-communal.webp";
+import MountainCamp from "@/public/assets/camp-haven-campsite-valley.webp";
+import NightGlamping from "@/public/assets/pexels-nguyndoanfoto-38435452.webp";
+import WoodlandCamp from "@/public/assets/camp-haven-tent-hillside.webp";
+
+const photos = [
+  [MountainCamp, "col-span-2 row-span-2", "object-center"],
+  [ForestCamp, "", "object-center"],
+  [CampFriends, "", "object-[center_65%]"],
+  [WoodlandCamp, "col-span-2", "object-[center_62%]"],
+  [NightGlamping, "", "object-[center_56%]"],
+  [Campfire, "col-span-2 md:col-span-3", "object-[center_60%]"],
+] as const;
+
+export default function Gallery() {
+  const { t } = useLanguage();
+  const { gallery } = t.home;
+
+  return <section id="gallery" className="section-space bg-white"><div className="page-shell"><div className="flex flex-wrap items-end justify-between gap-5"><SectionHeading eyebrow={gallery.eyebrow} title={gallery.title} description={gallery.description} /><a href="#" className="text-sm font-bold text-[var(--forest)]">{gallery.cta}</a></div><div className="mt-10 grid auto-rows-[150px] grid-cols-2 gap-3 md:auto-rows-[220px] md:grid-cols-4">{photos.map(([photo, layout, position], index) => <div key={photo.src} className={`relative overflow-hidden rounded-2xl ${layout} ${index === 5 ? "md:col-span-3" : ""}`}><Image src={photo} alt={gallery.imageAlt} fill sizes="(min-width: 768px) 25vw, 50vw" className={`object-cover transition-transform duration-500 ease-out hover:scale-[1.02] ${position}`} /></div>)}</div></div></section>;
+}
