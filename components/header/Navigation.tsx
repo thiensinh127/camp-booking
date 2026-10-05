@@ -28,7 +28,7 @@ export function Navigation() {
 
   return <nav className={cn("fixed inset-x-0 top-0 z-50 border-b transition-all duration-300", isScrolled ? "border-[var(--line)] bg-[color:rgb(247_245_238_/_0.92)] text-[var(--text-primary)] lg:backdrop-blur" : "border-transparent bg-transparent text-white")}>
     <div className="page-shell flex h-[76px] items-center justify-between gap-5">
-      <Link href="#home" aria-label="Camp Haven home" className="relative z-50 flex items-center"><Image src={Logo} alt="Camp Haven" width={112} className="h-auto w-24 object-contain sm:w-28" priority /></Link>
+      <Link href="#home" aria-label="Camp Haven home" className="relative z-50 flex items-center"><Image src={Logo} alt="Camp Haven" width={112} className={cn("logo-filter h-auto w-24 object-contain transition-[filter] duration-300 sm:w-28", isScrolled && "[filter:invert(17%)_sepia(20%)_saturate(1400%)_hue-rotate(100deg)_brightness(90%)_contrast(95%)]")} priority /></Link>
       <div className="hidden items-center gap-6 lg:flex">
         {links.map((link, index) => <a key={link.href} href={link.href} className="border-b-2 border-transparent py-2 text-sm font-semibold transition hover:border-current hover:opacity-75">{t.nav[index]}</a>)}
         <button onClick={() => setLocale(locale === "vi" ? "en" : "vi")} className="rounded-lg border border-current/20 px-3 py-2 text-xs font-bold">{locale === "vi" ? "EN" : "VI"}</button>

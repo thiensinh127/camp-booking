@@ -31,4 +31,10 @@ if (!overlay.includes('from "next/image"') || !overlay.includes("priority")) {
   throw new Error("hero image is not responsive and prioritized");
 }
 
+const navigation = readFileSync("components/header/Navigation.tsx", "utf8");
+const footer = readFileSync("components/footer/Footer.tsx", "utf8");
+if (!navigation.includes("logo-filter") || !footer.includes('from "next/image"')) {
+  throw new Error("header and footer logo treatments are missing");
+}
+
 console.log("localized homepage content is wired");
