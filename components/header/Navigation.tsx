@@ -7,7 +7,6 @@ import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { LoginModal } from "../login/LoginModal";
 import { useLanguage } from "@/components/i18n/LanguageProvider";
 
 const links = [
@@ -32,7 +31,6 @@ export function Navigation() {
       <div className="hidden items-center gap-6 lg:flex">
         {links.map((link, index) => <a key={link.href} href={link.href} className="border-b-2 border-transparent py-2 text-sm font-semibold transition hover:border-current hover:opacity-75">{t.nav[index]}</a>)}
         <button onClick={() => setLocale(locale === "vi" ? "en" : "vi")} className="rounded-lg border border-current/20 px-3 py-2 text-xs font-bold">{locale === "vi" ? "EN" : "VI"}</button>
-        <LoginModal />
         <Button asChild className="h-11 rounded-xl bg-[var(--forest)] px-5 text-white hover:bg-[var(--forest-hover)]"><a href="#booking">{t.book}</a></Button>
       </div>
       <div className="relative z-50 flex items-center gap-2 lg:hidden">
@@ -42,7 +40,6 @@ export function Navigation() {
       {isMenuOpen && <div className="fixed inset-x-3 top-[76px] bottom-3 flex flex-col items-center justify-center gap-7 overflow-y-auto rounded-[2rem] border border-white/10 bg-[var(--dark-forest)] px-6 text-center text-white shadow-2xl lg:hidden">
         {links.map((link, index) => <a key={link.href} href={link.href} onClick={() => setIsMenuOpen(false)} className="font-heading text-3xl font-bold">{t.nav[index]}</a>)}
         <button onClick={() => setLocale(locale === "vi" ? "en" : "vi")} className="rounded-lg border border-white/25 px-4 py-2 text-sm font-bold">{locale === "vi" ? "EN" : "VI"}</button>
-        <LoginModal />
         <Button asChild className="h-12 rounded-xl bg-white px-6 text-[var(--forest)] hover:bg-[var(--surface-muted)]"><a href="#booking" onClick={() => setIsMenuOpen(false)}>{t.book}</a></Button>
       </div>}
     </div>

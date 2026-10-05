@@ -3,10 +3,10 @@ import { ArrowUpRight, Caravan, House, Tent, Trees } from "lucide-react";
 import Image from "next/image";
 import { SectionHeading } from "@/components/site/SectionHeading";
 import { useLanguage } from "@/components/i18n/LanguageProvider";
-import ForestCamp from "@/public/assets/pexels-anastasia-shuraeva-4989501.webp";
-import MountainCamp from "@/public/assets/pexels-d-ng-nhan-324384-18207338.webp";
-import NightGlamping from "@/public/assets/pexels-d-ng-nhan-324384-39914924.webp";
-import WoodlandTent from "@/public/assets/pexels-nguyndoanfoto-32602809.webp";
+import ForestCamp from "@/public/assets/camp-haven-tent-communal.webp";
+import MountainCamp from "@/public/assets/camp-haven-campsite-valley.webp";
+import NightGlamping from "@/public/assets/camp-haven-tent-hillside.webp";
+import WoodlandTent from "@/public/assets/camp-haven-tent-garden.webp";
 
 const visuals = [[Tent, ForestCamp], [Caravan, MountainCamp], [Trees, NightGlamping], [House, WoodlandTent]] as const;
 

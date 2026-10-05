@@ -4,7 +4,7 @@ import { Bike, Bird, Flame, Mountain, Sailboat, Sparkles } from "lucide-react";
 import Image from "next/image";
 import { SectionHeading } from "@/components/site/SectionHeading";
 import { useLanguage } from "@/components/i18n/LanguageProvider";
-import Campfire from "@/public/assets/pexels-dongdilac-33901356.webp";
+import Campfire from "@/public/assets/camp-haven-tent-communal.webp";
 
 const icons = [Mountain, Sailboat, Flame, Bird, Sparkles, Bike] as const;
 

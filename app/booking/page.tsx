@@ -2,9 +2,9 @@
 import { AccommodationItem } from "./BookingCard";
 import { SectionHeading } from "@/components/site/SectionHeading";
 import { useLanguage } from "@/components/i18n/LanguageProvider";
-import ForestCamp from "@/public/assets/pexels-nguyendesigner-16671235.webp";
-import MountainCamp from "@/public/assets/pexels-nguyndoanfoto-38435444.webp";
-import NightGlamping from "@/public/assets/pexels-quang-nguyen-vinh-222549-32307789.webp";
+import ForestCamp from "@/public/assets/camp-haven-campsite-valley.webp";
+import MountainCamp from "@/public/assets/camp-haven-tent-hillside.webp";
+import NightGlamping from "@/public/assets/camp-haven-tent-garden.webp";
 
 const images = [NightGlamping, MountainCamp, ForestCamp];
 

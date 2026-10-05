@@ -1,4 +1,4 @@
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 
 const files = [
   "app/about/page.tsx",
@@ -40,8 +40,8 @@ if (!navigation.includes("camp-haven-logo.png") || !footer.includes("camp-haven-
 const imageFiles = ["app/about/page.tsx", "app/activity/page.tsx", "app/booking/page.tsx", "app/news/page.tsx", "app/gallery/page.tsx", "components/site/FinalCta.tsx"];
 for (const file of imageFiles) {
   const source = readFileSync(file, "utf8");
-  if (source.includes("images.unsplash.com") || !source.includes("pexels-")) {
-    throw new Error(`${file} does not use local Pexels WebP assets`);
+  if (source.includes("images.unsplash.com") || !source.includes(".webp")) {
+    throw new Error(`${file} does not use local WebP assets`);
   }
 }
 
@@ -76,12 +76,16 @@ if (!heroContent.includes("createPortal") || !benefits.includes("lg:col-span-2")
   throw new Error("experience modal or benefits layout is missing its refreshed structure");
 }
 
-if (!news.includes("pexels-nguyndoanfoto-38435448.webp") || !activity.includes("pexels-dongdilac-33901356.webp")) {
-  throw new Error("journal and experience images are not swapped");
+if (!news.includes("camp-haven-campsite-valley.webp") || !activity.includes("camp-haven-tent-communal.webp")) {
+  throw new Error("journal and experience images do not use the new camp photos");
 }
 
 if (!navigation.includes("lg:rounded-[1.5rem]") || !bookingForm.includes("max-h-[78dvh]") || !bookingForm.includes("lg:divide-x")) {
   throw new Error("header and booking controls are missing their responsive layout");
+}
+
+if (navigation.includes("LoginModal") || !existsSync("app/icon.png") || !news.includes("camp-haven-campsite-valley.webp")) {
+  throw new Error("browser icon, login removal, or new camp imagery is missing");
 }
 
 console.log("localized homepage content is wired");
