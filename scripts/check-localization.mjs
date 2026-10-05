@@ -27,8 +27,8 @@ if (!bookingForm.includes("t.selectDate") || !bookingForm.includes("t.tent")) {
 }
 
 const overlay = readFileSync("components/OverLay.tsx", "utf8");
-if (!overlay.includes('from "next/image"') || !overlay.includes("priority")) {
-  throw new Error("hero image is not responsive and prioritized");
+if (!overlay.includes("camp-haven-tent-communal.webp") || !overlay.includes("camp-haven-campsite-valley.webp") || !overlay.includes("camp-haven-tent-garden.webp") || (overlay.match(/<Image /g) || []).length !== 3) {
+  throw new Error("hero collage is missing its three local camp images");
 }
 
 const navigation = readFileSync("components/header/Navigation.tsx", "utf8");
