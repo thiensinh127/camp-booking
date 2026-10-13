@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Camp Booking
 
-## Getting Started
+Trang web giới thiệu khu cắm trại Camp Haven, xây dựng với Next.js và tối ưu cho trải nghiệm đặt chỗ trên thiết bị di động.
 
-First, run the development server:
+## Demo
+
+Xem bản demo đã triển khai tại [camp-booking-kjsn.vercel.app](https://camp-booking-kjsn.vercel.app/).
+
+## Công nghệ
+
+- Next.js 15
+- React 19 và TypeScript
+- Tailwind CSS
+- Radix UI
+
+## Chạy dự án local
+
+### Yêu cầu
+
+- Node.js 20 LTS hoặc mới hơn
+- npm 10 hoặc mới hơn
+
+### Cài đặt và khởi chạy
 
 ```bash
+git clone https://github.com/thiensinh127/camp-booking.git
+cd camp-booking
+npm ci
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Mở [http://localhost:3000](http://localhost:3000) để xem ứng dụng. Mã nguồn sẽ được tự động tải lại khi bạn chỉnh sửa.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Các lệnh hữu ích
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+# Chạy môi trường phát triển
+npm run dev
 
-## Learn More
+# Tạo production build
+npm run build
 
-To learn more about Next.js, take a look at the following resources:
+# Chạy production server sau khi build
+npm start
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Kiểm tra regression cho các bề mặt mobile
+npm run verify:mobile-surfaces
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Triển khai
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Dự án được triển khai trên Vercel. Tạo production build bằng `npm run build` trước khi phát hành hoặc kiểm tra thay đổi.
