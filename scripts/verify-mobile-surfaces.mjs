@@ -7,6 +7,7 @@ const footer = readFileSync("components/footer/Footer.tsx", "utf8");
 const expectations = [
   [navigation, "z-40 animate-in slide-in-from-top-4", "mobile navigation drawer must layer above the page and animate from the top"],
   [navigation, "motion-reduce:animate-none", "mobile navigation drawer must respect reduced-motion preferences"],
+  [navigation, "font-heading text-2xl font-bold", "mobile navigation links must use the compact menu type scale"],
   [booking, "animate-in slide-in-from-bottom-6", "mobile booking sheet must animate from the bottom"],
   [booking, "motion-reduce:animate-none", "mobile booking sheet must respect reduced-motion preferences"],
   [footer, "grid-cols-2", "mobile footer links must use a compact two-column grid"],

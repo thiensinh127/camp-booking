@@ -38,8 +38,8 @@ export function Navigation() {
         <button type="button" aria-label="Toggle navigation" aria-expanded={isMenuOpen} onClick={() => setIsMenuOpen((value) => !value)} className="grid size-10 place-items-center rounded-lg border border-current/30">{isMenuOpen ? <X size={21} /> : <Menu size={22} />}</button>
       </div>
     </div>
-    {isMenuOpen && <div className="fixed inset-x-3 top-[76px] bottom-3 z-40 animate-in slide-in-from-top-4 duration-300 flex flex-col items-center justify-center gap-7 overflow-y-auto rounded-[2rem] border border-white/10 bg-[var(--dark-forest)] px-6 text-center text-white shadow-2xl motion-reduce:animate-none lg:hidden">
-        {links.map((link, index) => <a key={link.href} href={link.href} onClick={() => setIsMenuOpen(false)} className="font-heading text-3xl font-bold">{t.nav[index]}</a>)}
+    {isMenuOpen && <div className="fixed inset-x-3 top-[76px] bottom-3 z-40 animate-in slide-in-from-top-4 duration-300 flex flex-col items-center justify-center gap-6 overflow-y-auto rounded-[2rem] border border-white/10 bg-[var(--dark-forest)] px-6 text-center text-white shadow-2xl motion-reduce:animate-none lg:hidden">
+        {links.map((link, index) => <a key={link.href} href={link.href} onClick={() => setIsMenuOpen(false)} className="font-heading text-2xl font-bold">{t.nav[index]}</a>)}
         <button onClick={() => setLocale(locale === "vi" ? "en" : "vi")} className="rounded-lg border border-white/25 px-4 py-2 text-sm font-bold">{locale === "vi" ? "EN" : "VI"}</button>
         <Button asChild className="h-12 rounded-xl bg-white px-6 text-[var(--forest)] hover:bg-[var(--surface-muted)]"><a href="#booking" onClick={() => setIsMenuOpen(false)}>{t.book}</a></Button>
     </div>}
