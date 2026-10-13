@@ -6,7 +6,8 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "verify:mobile-surfaces": "node scripts/verify-mobile-surfaces.mjs"
   },
   "dependencies": {
     "@radix-ui/react-checkbox": "^1.1.3",
